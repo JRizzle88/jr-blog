@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Blog</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let post of archive" (click)="viewPost(post)">
+    <ion-item>
+      <h3>{{ post.title }}</h3>
+    </ion-item>
+    <ion-card-content>
+      <p>{{ post.content }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

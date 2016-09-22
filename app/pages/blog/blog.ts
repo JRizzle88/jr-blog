@@ -11,7 +11,7 @@ import 'rxjs/Rx';
 })
 export class Blog implements OnInit {
 
-  private jsonData = 'app/data/posts.json';
+  private jsonData: string = '../../../data/posts.json';
   private post: any;
   archive: Array<Object> = [];
 
@@ -21,10 +21,13 @@ export class Blog implements OnInit {
 
   ngOnInit() {
     this.getPosts();
+    console.log(this.getPosts());
+    console.log(this.archive);
   }
 
-  getPosts(): Observable<Object> {
-    return this.http.get(this.jsonData).map(res => res.json());
+  getPosts() {
+    //return this.http.get(this.jsonData).map(res => res.json());
+    return this.http.get(this.jsonData).map((res: Response) => res.json()).subscribe(res => this.archive = res);
   }
 
   prettyDate(date: string) {
@@ -38,4 +41,7 @@ export class Blog implements OnInit {
     this.navCtrl.push(this.post, { 'id': id, 'url': url });
   }
 
+  logError(err) {
+    console.error('There was an error: ' + err);
+  }
 }
