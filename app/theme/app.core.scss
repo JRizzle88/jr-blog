@@ -1,0 +1,31 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Shared Imports
+// --------------------------------------------------
+// These are the imports which make up the design of this app.
+// By default each design mode includes these shared imports.
+// App Shared Sass variables belong in app.variables.scss.
+
+//@import "../pages/home/home";
+
+//@import "../pages/blog/blog";
+
+// custom vars
+$light: white;
+$bonk-green: #4D9999;
+
+// class overrides
+.toolbar-background {
+    background: $bonk-green;
+}
+
+.toolbar-title,
+.bar-button-default,
+.bar-button-default:hover {
+    color: $light;
+}
+
+ion-content h3 {
+    color: $bonk-green;
+}
