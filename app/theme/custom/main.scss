@@ -1,0 +1,56 @@
+
+// custom or external scss imports
+@import "./animation.scss";
+
+// custom vars
+// looks up custom color in app.variables.scss
+$blue: color($colors, favoriteblue);
+$lightgray: color($colors, favoritegray);
+// ionic class overrides
+a {
+    text-decoration: none;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+// body background
+ion-content {
+    background-color: $lightgray;
+}
+
+.button-primary {
+    background-color: $blue;
+    &:hover:not(.disable-hover) {
+        background-color: lighten($blue, 10%);
+    }
+}
+
+// anything to text blue
+.toolbar-title,
+.bar-button-default,
+.bar-button-default:hover,
+ion-content h2 {
+    color: $blue;
+}
+
+// simple fade on images
+// uses mixins with a keyframe in animation.scss
+.fade-in {
+    animation: fadeIn 1.3s;
+}
+
+// max-width for app
+.blog-post {
+    max-width: 700px;
+    margin: 0 auto;
+    display: block;
+}
+
+// blog loop and single post
+.blog-post {
+    margin-bottom: 25px;
+    &:first-child {
+        margin-top: 25px;
+    }
+}

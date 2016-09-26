@@ -1,40 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Post } from '../post/post';
+// provider in app/providers
 import { PostService } from '../../providers/post-service';
+// custom helper class in app/models
+import { Helper } from '../../models/helper';
 
 @Component({
+  providers: [PostService, Helper],
   templateUrl: 'build/pages/blog/blog.html',
-  providers: [PostService]
 })
-export class Blog implements OnInit {
+export class Blog {
 
   private post: any;
   archive: Array<Object> = [];
 
-  constructor(public navCtrl: NavController, public postService: PostService, private navParams: NavParams) {
-    this.post = Post;
-  }
-
-  ngOnInit() {
+  constructor(public navCtrl: NavController, public postService: PostService, private navParams: NavParams, private helper: Helper) {
     this.getPosts();
   }
 
   getPosts() {
-    this.postService.load().subscribe(
+    this.postService.getAll().subscribe(
       data => this.archive = data
     );
   }
 
-  prettyDate(date: string) {
-    // use moment package to format
-    // check for valid date else return error
+  viewPost(event, post) {
+    let id: number = post['id'];
+    this.navCtrl.push(Post, { post: post });
   }
 
-  viewPost(post: Object) {
-    let id: string = post['id'];
-    let url: string = post['url'];
-    this.navCtrl.push(this.post, { 'id': id, 'url': url });
+  // function to set a default for non existing image
+  verifyImage(url: string) {
+    return this.helper.verifyImage(url);
+  }
+
+  // human readable if >= than 7 days ago using moment
+  formatDate(dateString: string) {
+    return this.helper.formatDate(dateString);
   }
 
 }

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Post</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="blog-post">
+    <ion-item>
+      <h2>{{ post.title }}</h2>
+      <p><small><ion-icon name="alarm"></ion-icon> {{ formatDate(post.published_at) }}</small></p>
+    </ion-item>
+    <img src="{{ verifyImage(post.image_url) }}" />
+    <ion-card-content>
+      <p>{{ post.content }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

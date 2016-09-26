@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ionicBootstrap, Platform, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
+
 import { Home } from './pages/home/home';
 import { Blog } from './pages/blog/blog';
 
@@ -11,8 +12,8 @@ import { Blog } from './pages/blog/blog';
 class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Home;
-
+  //rootPage: any = Home;
+  rootPage: any = Blog;
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform) {

@@ -8,12 +8,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let post of archive" (click)="viewPost(post)">
+  <ion-card class="blog-post" *ngFor="#post of archive">
     <ion-item>
-      <h3>{{ post.title }}</h3>
+      <a (click)="viewPost($event, post)"><h2>{{ post.title }}</h2></a>
+      <p><small><ion-icon name="alarm"></ion-icon> {{ formatDate(post.published_at) }}</small></p>
     </ion-item>
+    <img class="fade-in" src="{{ verifyImage(post.image_url) }}" />
     <ion-card-content>
       <p>{{ post.content }}</p>
     </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button primary small (click)="viewPost($event, post)">
+          <ion-icon name="book"></ion-icon>
+          <div>Read More</div>
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-card>
 </ion-content>

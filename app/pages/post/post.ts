@@ -1,38 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SafeHtml } from '@angular/platform-browser';
+import { Observable } from 'rxjs/Rx';
+// provider in app/providers
+import { PostService } from '../../providers/post-service';
+// custom helper class in app/models
+import { Helper } from '../../models/helper';
 
 @Component({
+  providers: [PostService, Helper],
   templateUrl: 'build/pages/post/post.html'
 })
-export class Post implements OnInit {
 
-  private post: Object;
-  private id: string;
-  private url: string;
-  private title: string;
-  private content: SafeHtml;
+export class Post {
 
-  constructor(public navCtrl: NavController, private navParams: NavParams) {
-    this.id = this.navParams.get('id');
-    this.url = this.navParams.get('url');
+  private post: any;
+
+  // data fields for posts.json
+  // not yet manipulated - entire post object is in navParams
+  //public id: number;
+  //private url: string;
+  //private title: string;
+  //private content: SafeHtml;
+  //private image_url: string;
+  //private published_at: string;
+
+  constructor(public navCtrl: NavController, private navParams: NavParams,  public postService: PostService, private helper: Helper) {
+    this.post = this.navParams.get('post');
   }
 
-  ngOnInit() {
-    this.view();
+  // function to set a default for non existing image
+  verifyImage(url: string) {
+    return this.helper.verifyImage(url);
   }
 
-  image() {
-    // format image for url
-  }
-
-  prettyDate(date: string) {
-    // use moment package to format
-    // check for valid date else return error
-  }
-
-  view() {
-    // pass object to view
+  // human readable if >= than 7 days ago using moment
+  formatDate(dateString: string) {
+    return this.helper.formatDate(dateString);
   }
 
 }
