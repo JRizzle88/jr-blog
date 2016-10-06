@@ -1,5 +1,5 @@
 
-# Blog - WIP
+# Blog - WIP - Needs new Ionic2 build system and structure.
 ###### Built with Ionic 2
 
 ## Extras
